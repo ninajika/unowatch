@@ -164,12 +164,10 @@
             const body = document.body;
             body.classList.toggle('dark-mode');
 
-            
             const isDarkMode = body.classList.contains('dark-mode');
             localStorage.setItem('darkMode', isDarkMode);
         }
 
-        
         function loadDarkModePreference() {
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
             const body = document.body;
@@ -178,13 +176,11 @@
             }
         }
 
-        
         document.addEventListener('DOMContentLoaded', function() {
             loadDarkModePreference();
             document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
         });
 
-        
         function updatePlayerNames(numPlayers) {
             let playerNames = [];
             for (let i = 1; i <= numPlayers; i++) {
@@ -194,7 +190,6 @@
             document.getElementById('numPlayers').placeholder = playerNames.join(', ');
         }
 
-        
         function saveData() {
             const numPlayers = document.getElementById('numPlayers').value;
             const number_uno_global = document.getElementById('number_uno_global').value;
@@ -215,7 +210,6 @@
             }
         }
 
-        
         function loadData() {
             const data = JSON.parse(localStorage.getItem('userData'));
             if (data) {
@@ -225,7 +219,6 @@
             }
         }
 
-        
         document.getElementById('player1').addEventListener('click', (event) => {
             event.preventDefault();
             updatePlayerNames(1);
@@ -246,20 +239,17 @@
             updatePlayerNames(4);
         });
 
-        
         document.getElementById('submitBtn').addEventListener('click', (event) => {
             event.preventDefault();
             saveData();
             alert('Happy Enjoy');
         });
 
-        
         window.addEventListener('load', () => {
             loadData();
             removeURLParameter('numPlayers'); 
         });
 
-        
         function throttle(func, limit) {
             let inThrottle;
             return function() {
@@ -273,7 +263,6 @@
             };
         }
 
-        
         document.getElementById('number_uno_global').addEventListener('input', throttle(function() {
             if (!/^[\d]+$/.test(this.value) || parseInt(this.value) < 0) {
                 alert("Please enter a valid positive number.");
@@ -294,8 +283,6 @@
             }
         }, 300));
 
-
-        
         function removeURLParameter(parameter) {
             if (history.replaceState) {
                 const url = window.location.href.split('?')[0];
@@ -303,7 +290,6 @@
             }
         }
 
-        
         function resetForm() {
             localStorage.removeItem('remainingTimes') 
             localStorage.removeItem('activePlayerIndex') 
@@ -313,7 +299,6 @@
             document.getElementById('number_uno_player').value = '';
         }
 
-        
         document.getElementById('resetBtn').addEventListener('click', (event) => {
             event.preventDefault();
             resetForm();
